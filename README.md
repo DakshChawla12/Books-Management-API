@@ -37,6 +37,7 @@ MongoDB installed and running locally or a MongoDB Atlas account
   image_url (string): URL of the book cover image.
   ISBN (number, unique): International Standard Book Number.
   description (string): Description of the book.
+  
   GET /books/
   : Get a book by its ID.
   
