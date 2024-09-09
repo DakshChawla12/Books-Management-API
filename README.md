@@ -2,17 +2,18 @@
 This is a RESTful API for managing books, built with Node.js, Express.js, and MongoDB. The API allows users to view a list of all books and perform CRUD (Create, Read, Update, Delete) operations on books, provided they are logged in.
 
 ## Features
-  ## View All Books: Get a list of all books.
+  View All Books: Get a list of all books.
   Add a New Book: Logged-in users can add a new book.
   Update a Book: Logged-in users can update a book by its ID.
   Delete a Book: Logged-in users can delete a book by its ID.
   Get a Book by ID: Retrieve detailed information of a book by its ID.
+  
 ## Prerequisites
 Node.js and npm installed
 MongoDB installed and running locally or a MongoDB Atlas account
 
 ## Installation
-  ##Clone the repository:
+  Clone the repository:
   git clone https://github.com/DakshChawla12/Books-Management-API.git  
   cd books-management-api
 
