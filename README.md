@@ -26,7 +26,7 @@ MongoDB installed and running locally or a MongoDB Atlas account
 ## API Endpoints
   ## Public Routes
   GET /books: Get a list of all books.
-  Protected Routes (Require Authentication)
+  ## Protected Routes (Require Authentication)
   POST /books: Add a new book.
 
 ## Body Parameters:
@@ -47,6 +47,18 @@ MongoDB installed and running locally or a MongoDB Atlas account
   Body Parameters: Same as the POST request.
   DELETE /books/
   : Delete a book by its ID.
+
+## Pagination and Filtering
+  The /books endpoint supports pagination and filtering:
+
+  ## Query Parameters:
+  page (number, optional): Page number for pagination (default is 1).
+  genre (string, optional): Filter books by genre.
+  author (string, optional): Filter books by author.
+  publication (number, optional): Filter books by publication year.
+  
+  ## Pagination Example: To get the second page of books with a limit of 5 books per page, you would use:
+  GET /books?page=2
 
 ## Authentication
 The API uses JWT (JSON Web Tokens) for authentication. You need to provide a token in the Authorization header (in the format Bearer <token>) to access protected routes. The token can be obtained by logging in.
