@@ -1,21 +1,36 @@
 const books = require('../Models/book');
 
 async function handleGetAllBooks(req, res) {
-    const { genre, author, publication } = req.query;
-    const filter = {};
+    const { genre, author, publication, page = 1 } = req.query;
 
-    // Build the filter object based on query parameters
-    if (genre) filter.genre = genre;
-    if (author) filter.author = author;
-    if (publication) filter.publication = Number(publication);
+    const limit = 5;
+    let startIdx = (Number(page) - 1) * limit;
+    let endIdx = startIdx + limit;
 
     try {
-        const filtered_books = await books.find(filter);
-        res.json(filtered_books);
+        const allBooks = await books.find();
+
+        let filteredBooks = allBooks;
+
+        if (genre) {
+            filteredBooks = filteredBooks.filter(book => book.genre === genre);
+        }
+        if (author) {
+            filteredBooks = filteredBooks.filter(book => book.author === author);
+        }
+        if (publication) {
+            const publicationNumber = Number(publication);
+            filteredBooks = filteredBooks.filter(book => book.publication === publicationNumber);
+        }
+
+        const pagedBooks = filteredBooks.slice(startIdx, endIdx);
+
+        res.status(200).json({ success: true, books: pagedBooks });
     } catch (err) {
         res.status(500).json({ success: false, message: 'Error fetching books' });
     }
 }
+
 
 async function handleAddNewBook(req,res) {
     try {
