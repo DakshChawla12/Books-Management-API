@@ -106,4 +106,17 @@ async function handleDeleteBookById(req,res) {
 
 }
 
-module.exports = {handleGetAllBooks,handleAddNewBook,handleGetBookById,handleUpdateBookByID,handleDeleteBookById};
+async function handleSearchBook(req,res) {
+    const {ISBN} = req.query;
+    if(!ISBN) res.status(400).json({ success: false, message: 'please provide a valid ISBN number'});
+
+    try{
+        const userBook = await books.findOne({ ISBN });
+        if(!userBook)  res.status(404).json({ success: false, message: 'Book not found' });
+        res.json({ success: true, message: `Book with ISBN number ${ISBN} --> `, book: userBook });
+    } catch(err){
+        res.status(500).json({ success: false, message: 'Error fetching the book' });
+    }
+}
+
+module.exports = {handleGetAllBooks,handleAddNewBook,handleGetBookById,handleUpdateBookByID,handleDeleteBookById,handleSearchBook};
