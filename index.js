@@ -12,7 +12,7 @@ const books_router = require('./Routes/books');
 const auth_router = require('./Routes/auth');
 
 // *** connecting to MongoDB *** //
-connectMongoDB('mongodb://localhost:27017/Books_Management')
+connectMongoDB('mongodb+srv://dakshchawla2004:doctordaksh@cluster0.19je8.mongodb.net/Books_Management')
     .then(() => {console.log('connected to mongoDB')})
     .catch(() => {console.log('error connecting to database')})
 
